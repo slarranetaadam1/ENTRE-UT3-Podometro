@@ -66,8 +66,8 @@ public class Podometro {
         sexo = queSexo;
         if (sexo == HOMBRE) {
             longitudZancada = Math.ceil (altura * ZANCADA_HOMBRE);
-        } else
-        {
+        } 
+        else{
             longitudZancada = Math.floor (altura * ZANCADA_MUJER);
         }
     }
@@ -87,36 +87,36 @@ public class Podometro {
      */
     public void registrarCaminata(int pasos, int dia, int horaInicio, int horaFin) {
         String diaDeLaSemana ="";
+        int auxTiempoInicio = (horaInicio / 100) * 60 + horaInicio;
+        int auxTiempoFin = (horaFin / 100) * 60 + horaFin % 100;
+        tiempo += auxTiempoInicio - auxTiempoFin; 
+        /*tiempo =  (horaFin - horaInicio) / 100 * 60 ;*/
+        
         switch (dia) {
             case 1 :
             case 2 : 
             case 3 : 
             case 4: 
-            case 5 : diaDeLaSemana = "LABORABLE" 
-            totalPasosLaborables = pasos * numDiaLaborable;
+            case 5 : diaDeLaSemana = "LABORABLE"; 
+            totalPasosLaborables += pasos;
             break;
-            case 6 : diaDeLaSemana = "SABADO";
+            case 6 : diaDeLaSemana = "SÁBADO";
+            totalPasosSabado += pasos;
             break;
             case 7 : diaDeLaSemana = "DOMINGO";
+            totalPasosDomingo += pasos;
             break;
         }
-        tiempo = horaFin - horaInicio;
-        if(diaDeLaSemana == "LABORABLE"){
-           
-        }
-        
         if ( horaInicio > 2100 ) {
             caminatasNoche++;
-        }
-        if (diaDeLaSemana == "LABORABLE"){
-        
-        }
+        }  
     }
 
     /**
-     * Mostramos en pantalla la siguiente información acerca de nuestro podometro con el mé-
-     * todo system.out.println y nos servimos de un if para mostrar cuándo es mujer de cuándo
-     * es hombre.
+     * Muestro en pantalla la configuración del podómetro y la altura de la
+     * persona que lo utiliza, con un if en caso de que sea muejer muestro su
+     * Sexo con un println. Para terminar en el método muestro la longitud de
+     * zancada.
      */
     public void printConfiguracion() {
         System.out.println("Configuración del podómetro" +
@@ -136,6 +136,11 @@ public class Podometro {
      * los valores de las variables y los atributos señalados.
      */
     public void printEstadísticas() {
+        double distanciaSabado = longitudZancada * totalPasosSabado ;
+        double distanciaDomingo = longitudZancada * totalPasosDomingo;
+        double distanciaLaborable = longitudZancada * totalPasosLaborables;
+        double distanciaFinDe = distanciaSabado + distanciaDomingo;
+      
         System.out.println("Estadisticas" +
             "\n***************************");
         System.out.println("Distancia recorrida toda la semana : "+ totalDistanciaSemana +
@@ -144,12 +149,12 @@ public class Podometro {
             + totalPasosSabado + "\nNºPasos DOMINGO : " + totalPasosDomingo );
         System.out.println("\nNº caminatas realizadas a partir de las 21h : " + caminatasNoche);
         System.out.println("\nTiempo total caminando a la semana" + tiempo );
-        System.out.println("\nDia/s con más pasos caminados : ");
+        
+        
     }
 
     /**
-     *  Calcula y devuelve un String que representa el nombre del día
-     *  en el que se ha caminado más pasos - "SÁBADO"   "DOMINGO" o  "LABORABLES"
+     *  Calculamos el día con mayor número de pasos en el siguiente método 
      */
     public String diaMayorNumeroPasos() {
         if ( totalPasosLaborables > totalPasosSabado && totalPasosLaborables > totalPasosDomingo){
