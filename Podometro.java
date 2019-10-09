@@ -88,20 +88,28 @@ public class Podometro {
     public void registrarCaminata(int pasos, int dia, int horaInicio, int horaFin) {
         String diaDeLaSemana ="";
         switch (dia) {
-            case 1 : 
-     
+            case 1 :
             case 2 : 
-            
             case 3 : 
-            
             case 4: 
-           
-            case 5 : diaDeLaSemana = "LABORABLE";
+            case 5 : diaDeLaSemana = "LABORABLE" 
+            totalPasosLaborables = pasos * numDiaLaborable;
             break;
             case 6 : diaDeLaSemana = "SABADO";
             break;
             case 7 : diaDeLaSemana = "DOMINGO";
             break;
+        }
+        tiempo = horaFin - horaInicio;
+        if(diaDeLaSemana == "LABORABLE"){
+           
+        }
+        
+        if ( horaInicio > 2100 ) {
+            caminatasNoche++;
+        }
+        if (diaDeLaSemana == "LABORABLE"){
+        
         }
     }
 
@@ -113,7 +121,7 @@ public class Podometro {
     public void printConfiguracion() {
         System.out.println("Configuración del podómetro" +
             "\n***************************");
-        System.out.println("Altura : " + altura + "mtos");
+        System.out.println("Altura : " + altura / 100 + " mtos");
         if( sexo == MUJER){
             System.out.println("Sexo : MUJER");
         }
@@ -121,7 +129,7 @@ public class Podometro {
         {
             System.out.println("Sexo : HOMBRE");
         }
-        System.out.println("Longitud zancada : " + longitudZancada );
+        System.out.println("Longitud zancada : " + longitudZancada / 100 + " mtos" );
     }
 
     /**Mostramos la siguiente información en printEstadísticas, junto con el texto mostramos 
@@ -131,12 +139,12 @@ public class Podometro {
         System.out.println("Estadisticas" +
             "\n***************************");
         System.out.println("Distancia recorrida toda la semana : "+ totalDistanciaSemana +
-            "\n Distancia recorrida fin de semana : " + totalDistanciaFinDeSemana ); 
-        System.out.println("\n NºPasos días laborables : " + totalPasosLaborables + "\n NºPasos SÁBADO : " 
-            + totalPasosSabado + "\n NºPasos DOMINGO : " + totalPasosDomingo );
-        System.out.println("\n Nº caminatas realizadas a partir de las 21h : " + caminatasNoche);
-        System.out.println("\n Tiempo total caminando a la semana" + tiempo );
-        System.out.println("\n Dia/s con más pasos caminados : ");
+            "\nDistancia recorrida fin de semana : " + totalDistanciaFinDeSemana ); 
+        System.out.println("\nNºPasos días laborables : " + totalPasosLaborables + "\nNºPasos SÁBADO : " 
+            + totalPasosSabado + "\nNºPasos DOMINGO : " + totalPasosDomingo );
+        System.out.println("\nNº caminatas realizadas a partir de las 21h : " + caminatasNoche);
+        System.out.println("\nTiempo total caminando a la semana" + tiempo );
+        System.out.println("\nDia/s con más pasos caminados : ");
     }
 
     /**
