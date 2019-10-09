@@ -140,15 +140,18 @@ public class Podometro {
         double distanciaDomingo = longitudZancada * totalPasosDomingo;
         double distanciaLaborable = longitudZancada * totalPasosLaborables;
         double distanciaFinDe = distanciaSabado + distanciaDomingo;
+        double distanciaSemana = distanciaSabado + distanciaDomingo + distanciaLaborable;
+        int horas = tiempo / 60;
+        int minutos = tiempo / 60;
       
         System.out.println("Estadisticas" +
             "\n***************************");
-        System.out.println("Distancia recorrida toda la semana : "+ totalDistanciaSemana +
-            "\nDistancia recorrida fin de semana : " + totalDistanciaFinDeSemana ); 
+        System.out.println("Distancia recorrida toda la semana : "+ distanciaSemana +
+            "\nDistancia recorrida fin de semana : " + distanciaFinDe ); 
         System.out.println("\nNºPasos días laborables : " + totalPasosLaborables + "\nNºPasos SÁBADO : " 
             + totalPasosSabado + "\nNºPasos DOMINGO : " + totalPasosDomingo );
         System.out.println("\nNº caminatas realizadas a partir de las 21h : " + caminatasNoche);
-        System.out.println("\nTiempo total caminando a la semana" + tiempo );
+        System.out.println("\nTiempo total caminando a la semana" + horas + " : " + minutos );
         
         
     }
