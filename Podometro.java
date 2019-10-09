@@ -28,8 +28,7 @@ public class Podometro {
     private int caminatasNoche;
     
     /**
-     * Inicializa el podómetro con la marca indicada por el parámetro.
-     * El resto de atributos se ponen a 0 y el sexo, por defecto, es mujer
+     * En el constructor he inicializado los atributos del podometro a 0 menos marca.
      */
     public Podometro(String queMarca) {
         marca = queMarca;
@@ -45,21 +44,14 @@ public class Podometro {
     }
 
     /**
-     * accesor para la marca
-     *  
+     * accesor para la marca 
      */
     public String getMarca() {
         return marca;
     }
 
     /**
-     * Simula la configuración del podómetro.
-     * Recibe como parámetros la altura y el sexo de una persona
-     * y asigna estos valores a los atributos correspondiente.
-     * Asigna además el valor adecuado al atributo longitudZancada
-     * 
-     * (leer enunciado)
-     *  
+     *  La configuración del podómetro va a ser la siguiente.
      */
     public void configurar(double queAltura, char queSexo) {
         altura = queAltura;
@@ -121,15 +113,14 @@ public class Podometro {
     public void printConfiguracion() {
         System.out.println("Configuración del podómetro" +
             "\n***************************");
-        System.out.println("Altura : " + altura / 100 + " mtos");
+        System.out.println("Altura : " + (altura / 100) + " mtos");
         if( sexo == MUJER){
             System.out.println("Sexo : MUJER");
         }
-        else
-        {
+        else{
             System.out.println("Sexo : HOMBRE");
         }
-        System.out.println("Longitud zancada : " + longitudZancada / 100 + " mtos" );
+        System.out.println("Longitud zancada : " + (longitudZancada / 100) + " mtos" );
     }
 
     /**Mostramos la siguiente información en printEstadísticas, junto con el texto mostramos 
@@ -139,25 +130,25 @@ public class Podometro {
         double distanciaSabado = longitudZancada * totalPasosSabado ;
         double distanciaDomingo = longitudZancada * totalPasosDomingo;
         double distanciaLaborable = longitudZancada * totalPasosLaborables;
-        double distanciaFinDe = distanciaSabado + distanciaDomingo;
-        double distanciaSemana = distanciaSabado + distanciaDomingo + distanciaLaborable;
+        double totalDistanciaFinDeSemana = distanciaSabado + distanciaDomingo;
+        double totalDistanciaSemana = distanciaSabado + distanciaDomingo + distanciaLaborable;
         int horas = tiempo / 60;
         int minutos = tiempo / 60;
       
         System.out.println("Estadisticas" +
             "\n***************************");
-        System.out.println("Distancia recorrida toda la semana : "+ distanciaSemana +
-            "\nDistancia recorrida fin de semana : " + distanciaFinDe ); 
+        System.out.println("Distancia recorrida toda la semana : "+ totalDistanciaSemana +
+            "\nDistancia recorrida fin de semana : " + totalDistanciaFinDeSemana ); 
         System.out.println("\nNºPasos días laborables : " + totalPasosLaborables + "\nNºPasos SÁBADO : " 
             + totalPasosSabado + "\nNºPasos DOMINGO : " + totalPasosDomingo );
         System.out.println("\nNº caminatas realizadas a partir de las 21h : " + caminatasNoche);
-        System.out.println("\nTiempo total caminando a la semana" + horas + " : " + minutos );
+        System.out.println("\nTiempo total caminando a la semana : " + horas + " : " + minutos );
         
         
     }
 
     /**
-     *  Calculamos el día con mayor número de pasos en el siguiente método 
+     *  Calculamos el día con mayor número de pasos en el siguiente método. 
      */
     public String diaMayorNumeroPasos() {
         if ( totalPasosLaborables > totalPasosSabado && totalPasosLaborables > totalPasosDomingo){
